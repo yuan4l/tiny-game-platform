@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yuan.tiny.platform.client.auth.AuthSqlMapper">
+	<select id="getServerInfo" parameterType="int" resultType="java.util.HashMap">
+	   <![CDATA[ 
+	   	SELECT * FROM t_auth_server WHERE id=#{id}
+	   ]]>
+	</select>
+
+	<select id="getAuthUser" parameterType="int" resultType="java.util.HashMap">
+	   <![CDATA[
+	   	SELECT * FROM t_auth_user WHERE id=#{id}
+	   ]]>
+	</select>
+</mapper>

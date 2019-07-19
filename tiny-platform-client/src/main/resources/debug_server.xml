@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<properties_root name="社交服务器">
+	<service_port desc="服务端口">7240</service_port>
+	<service_flag desc="服务标识：0测试，1发布">0</service_flag>
+</properties_root>

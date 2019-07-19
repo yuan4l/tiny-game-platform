@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+	<!-- must match "(renderer*,appender*,(category|logger)*,root?,categoryFactory?)" -->
+	<appender name="remoteFile" class="org.apache.log4j.net.SocketAppender">
+		<param name="remoteHost" value="localhost" /><!-- 这是远程log server -->
+		<param name="port" value="4560" /><!-- 这是远程log server port -->
+		<param name="Threshold" value="INFO" /><!-- log 级别 -->
+		<param name="ReconnectionDelay" value="1000" />
+		<param name="LocationInfo" value="true" />
+	</appender>
+	<!-- begin CONSOLE -->
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<param name="Threshold" value="ALL" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p][%d{yyyy-MM-dd HH:mm:ss}][%C{1}.%M(%L)] %m%n" />
+		</layout>
+	</appender>
+	<!-- end CONSOLE -->
+
+	<!-- begin exception -->
+	<appender name="ExceptionLogger" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="log/exception.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p][%d{HH:mm:ss}][%C{1}.%M(%L)] %m%n" />
+		</layout>
+	</appender>
+	<logger name="cn.yuan.tiny.platform.core.util.ExceptionLogger">
+		<level value="ERROR" />
+		<appender-ref ref="ExceptionLogger" />
+	</logger>
+	<!-- end exception -->
+	<root>
+		<level value="ERROR" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+</log4j:configuration>
